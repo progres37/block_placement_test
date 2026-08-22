@@ -10,5 +10,5 @@ material = ExtResource("1_n1a7g")
 weight = 5.0
 strength = 25.0
 sideways_transfer_predisposition = 0.25
-sideways_transfer_limit = 5.0
+sideways_transfer_limit = 10.0
 metadata/_custom_type_script = "uid://c30x2vblvs52e"

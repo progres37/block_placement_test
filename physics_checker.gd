@@ -22,15 +22,13 @@ func check() -> void:
 		terrain.blocks[block_position].supported_upward_weight = 0
 		terrain.blocks[block_position].supported_sideways_weight = 0
 		terrain.blocks[block_position].sideways_transferred_weight = 0
-		terrain.blocks[block_position].is_sitting = terrain.blocks.has(block_position + Vector3i(0, -1, 0))
+		terrain.blocks[block_position].is_sitting = terrain.blocks.has(block_position + Vector3i(0, -1, 0)) or terrain.blocks[block_position].properties.immovable
 		terrain.blocks[block_position].marked_for_fall = false
 		terrain.blocks[block_position].marked_for_crush = false
 	
-	print()
 	for layer_idx in range(max_layer_idx, min_layer_idx - 1, -1):
 		if not block_position_layers.has(layer_idx):
 			continue
-		print("Layer", layer_idx, ": ", block_position_layers[layer_idx])
 		
 		# sideways transfer loop
 		for position in block_position_layers[layer_idx]:

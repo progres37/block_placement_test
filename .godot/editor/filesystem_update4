@@ -1,4 +1,4 @@
-res://physics_checker.gd
-res://block.tscn
+res://physics_checker.tscn
+res://block_properties/normal_block_properties.tres
 res://block.gd
-res://terrain.gd
+res://physics_checker.gd

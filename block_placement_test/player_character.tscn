@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c1sg13eaevyo4"]
+
+[ext_resource type="Script" uid="uid://c41rrry45uwh8" path="res://player_character.gd" id="1_02ohv"]
+
+[node name="PlayerCharacter" type="Node3D" unique_id=390329365]
+script = ExtResource("1_02ohv")
+movement_speed = 3.0
+reach = 4.0
+
+[node name="Head" type="Node3D" parent="." unique_id=794474106]
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=624784327]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="Head" unique_id=60651142]
+debug_shape_thickness = 5

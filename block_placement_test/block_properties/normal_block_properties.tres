@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BlockProperties" format=3 uid="uid://bhtn4fnj4xnx3"]
+
+[ext_resource type="Material" uid="uid://c3pfwfma78evc" path="res://block_properties/materials/normal_block_material.tres" id="1_n1a7g"]
+[ext_resource type="Script" uid="uid://c30x2vblvs52e" path="res://block_properties/block_properties.gd" id="2_1xqxj"]
+
+[resource]
+script = ExtResource("2_1xqxj")
+name = "Normal"
+material = ExtResource("1_n1a7g")
+weight = 5.0
+strength = 25.0
+sideways_transfer_predisposition = 0.25
+sideways_transfer_limit = 5.0
+metadata/_custom_type_script = "uid://c30x2vblvs52e"

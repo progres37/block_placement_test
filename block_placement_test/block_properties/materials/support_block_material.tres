@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cs378nvmlr6ee"]
+
+[ext_resource type="Texture2D" uid="uid://dqajn0r8mvqf3" path="res://block_face.png" id="1_7w5dr"]
+
+[resource]
+albedo_color = Color(0.7490196, 0.49803922, 0.24705882, 1)
+albedo_texture = ExtResource("1_7w5dr")
+uv1_scale = Vector3(3, 2, 1)
+texture_filter = 0

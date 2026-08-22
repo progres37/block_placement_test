@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dv0q5i6s1r42f"]
+
+[ext_resource type="Script" uid="uid://bvtsg1nxm6tdn" path="res://hud.gd" id="1_37p78"]
+
+[node name="HUD" type="Control" unique_id=625434370]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_37p78")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=515235778]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Crosshair" type="ColorRect" parent="CenterContainer" unique_id=1028991643]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="SelectedBlockNameLabel" type="Label" parent="." unique_id=1756953951]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = -48.0
+offset_right = 67.0
+offset_bottom = -25.0
+grow_vertical = 0

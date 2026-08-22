@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://jjyiguq5bo7c"]
+
+[ext_resource type="Script" uid="uid://dgimhaj0f5y2n" path="res://physics_checker.gd" id="1_afgbt"]
+
+[node name="PhysicsChecker" type="Node" unique_id=1655568161]
+script = ExtResource("1_afgbt")

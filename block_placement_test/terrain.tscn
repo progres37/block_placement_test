@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://yt8a300a3bb2"]
+
+[ext_resource type="Script" uid="uid://bild4p3eoct1h" path="res://terrain.gd" id="1_206su"]
+[ext_resource type="PackedScene" uid="uid://jjyiguq5bo7c" path="res://physics_checker.tscn" id="2_0u6kl"]
+
+[node name="Terrain" type="Node3D" unique_id=1038608911]
+script = ExtResource("1_206su")
+
+[node name="PhysicsChecker" parent="." unique_id=1655568161 node_paths=PackedStringArray("terrain") instance=ExtResource("2_0u6kl")]
+terrain = NodePath("..")

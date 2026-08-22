@@ -1,0 +1,15 @@
+Label3D
+Node
+Label
+Control
+CenterContainer
+Container
+AnimationPlayer
+ColorRect
+RayCast3D
+WorldEnvironment
+DirectionalLight3D
+MeshInstance3D
+CollisionShape3D
+StaticBody3D
+Node3D

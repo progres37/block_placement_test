@@ -1,4 +1,1 @@
-res://physics_checker.tscn
-res://block_properties/normal_block_properties.tres
 res://block.gd
-res://physics_checker.gd

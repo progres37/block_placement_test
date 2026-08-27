@@ -4,7 +4,8 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ok116"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_ok116"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_ok116"]
+size = Vector2(1, 1)
 
 [node name="Block" type="StaticBody3D" unique_id=988031914]
 script = ExtResource("1_im0tn")
@@ -12,32 +13,52 @@ script = ExtResource("1_im0tn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=854294523]
 shape = SubResource("BoxShape3D_ok116")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1586962018]
-mesh = SubResource("BoxMesh_ok116")
+[node name="Meshes" type="Node3D" parent="." unique_id=279360125]
 
-[node name="Label3D" type="Label3D" parent="MeshInstance3D" unique_id=1662907890]
+[node name="X+Mesh" type="MeshInstance3D" parent="Meshes" unique_id=87337285]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.5, 0, 0)
+mesh = SubResource("PlaneMesh_ok116")
+
+[node name="Label3D" type="Label3D" parent="Meshes/X+Mesh" unique_id=322747727]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 3.5527137e-15, 1, -1, 4.371139e-08, -4.371139e-08, -0.39982903, 0.01999998, 0.29584152)
+text = "Front"
+
+[node name="X-Mesh" type="MeshInstance3D" parent="Meshes" unique_id=920987215]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.5, 0, 0)
+mesh = SubResource("PlaneMesh_ok116")
+
+[node name="Y+Mesh" type="MeshInstance3D" parent="Meshes" unique_id=712621262]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.5, 0)
+mesh = SubResource("PlaneMesh_ok116")
+
+[node name="Y-Mesh" type="MeshInstance3D" parent="Meshes" unique_id=1761097824]
+transform = Transform3D(4.371139e-08, -3.821371e-15, 1, -8.742278e-08, -1, 0, 1, -8.742278e-08, -4.371139e-08, 0, -0.5, 0)
+mesh = SubResource("PlaneMesh_ok116")
+
+[node name="Z+Mesh" type="MeshInstance3D" parent="Meshes" unique_id=1747382178]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, 0, 0.5)
+mesh = SubResource("PlaneMesh_ok116")
+
+[node name="Z-Mesh" type="MeshInstance3D" parent="Meshes" unique_id=626627664]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, 0, 0, -0.5)
+mesh = SubResource("PlaneMesh_ok116")
+
+[node name="Labels" type="Node3D" parent="." unique_id=1349702157]
+
+[node name="Label3D" type="Label3D" parent="Labels" unique_id=1662907890]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51)
-text = "sraken"
 
-[node name="Label3D2" type="Label3D" parent="MeshInstance3D" unique_id=1792759561]
+[node name="Label3D2" type="Label3D" parent="Labels" unique_id=1792759561]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -0.51)
-text = "sraken"
 
-[node name="Label3D3" type="Label3D" parent="MeshInstance3D" unique_id=335632427]
+[node name="Label3D3" type="Label3D" parent="Labels" unique_id=335632427]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.51, 0, 0)
-text = "sraken"
 
-[node name="Label3D4" type="Label3D" parent="MeshInstance3D" unique_id=1320988499]
+[node name="Label3D4" type="Label3D" parent="Labels" unique_id=1320988499]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.51, 0, 0)
-text = "sraken"
 
-[node name="Label3D5" type="Label3D" parent="MeshInstance3D" unique_id=1516009187]
+[node name="Label3D5" type="Label3D" parent="Labels" unique_id=1516009187]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.51, 0)
-text = "sraken"
 
-[node name="Label3D6" type="Label3D" parent="MeshInstance3D" unique_id=1306027026]
+[node name="Label3D6" type="Label3D" parent="Labels" unique_id=1306027026]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.51, 0)
-text = "sraken"
-
-[connection signal="player_began_look" from="." to="." method="_on_player_began_look"]
-[connection signal="player_ended_look" from="." to="." method="_on_player_ended_look"]

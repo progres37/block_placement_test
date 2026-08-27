@@ -1,3 +1,4 @@
+BeamBlockProperties
+MagicBlockProperties
 StandardMaterial3D
 BlockProperties
-ImageTexture

@@ -1,0 +1,2 @@
+extends BlockProperties
+class_name MagicBlockProperties

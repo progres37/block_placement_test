@@ -20,12 +20,12 @@ func change_look_direction(delta: Vector2) -> void:
 
 func interact_primary() -> void:
 	if current_ray_cast_collider is Block:
-		current_ray_cast_collider.player_interacted_primary.emit()
+		current_ray_cast_collider.interact_primary()
 
 func interact_secondary(selected_block: BlockProperties) -> void:
 	if current_ray_cast_collider is Block:
 		var collision_direction = ray_cast_3d.get_collision_normal()
-		current_ray_cast_collider.player_interacted_secondary.emit(collision_direction, selected_block)
+		current_ray_cast_collider.interact_secondary(collision_direction, selected_block)
 
 func _ready() -> void:
 	ray_cast_3d.target_position = reach * Vector3(1, 0, 0)
@@ -34,11 +34,11 @@ func _physics_process(delta: float) -> void:
 	var velocity: Vector3 = move_direction_versor * basis.orthonormalized().inverse() * movement_speed
 	position += velocity * delta
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var previous_ray_cast_collider = current_ray_cast_collider
 	current_ray_cast_collider = ray_cast_3d.get_collider()
 	if previous_ray_cast_collider != current_ray_cast_collider:
 		if current_ray_cast_collider is Block:
-			current_ray_cast_collider.player_began_look.emit()
+			current_ray_cast_collider.make_selected()
 		if previous_ray_cast_collider is Block:
-			previous_ray_cast_collider.player_ended_look.emit()
+			previous_ray_cast_collider.make_unselected()

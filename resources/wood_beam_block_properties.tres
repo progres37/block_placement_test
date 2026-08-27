@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BeamBlockProperties" format=3 uid="uid://dj3jvf4f0wdwx"]
+
+[ext_resource type="Material" uid="uid://bls7y8tr2f3e" path="res://resources/wood_beam_side_material.tres" id="1_dghdw"]
+[ext_resource type="Script" uid="uid://c2uf1bdtdurc0" path="res://block_properties/beam_block_properties.gd" id="1_infx0"]
+[ext_resource type="Material" uid="uid://bqswfamk4v8n3" path="res://resources/wood_beam_end_material.tres" id="2_rhmp4"]
+
+[resource]
+script = ExtResource("1_infx0")
+max_support_distance = 2
+name = "Wooden Beam"
+materials = Dictionary[int, StandardMaterial3D]({
+0: ExtResource("2_rhmp4"),
+1: ExtResource("2_rhmp4"),
+2: ExtResource("1_dghdw"),
+3: ExtResource("1_dghdw"),
+4: ExtResource("1_dghdw"),
+5: ExtResource("1_dghdw")
+})
+weight = 5.0
+base_strength = 30.0
+metadata/_custom_type_script = "uid://c2uf1bdtdurc0"

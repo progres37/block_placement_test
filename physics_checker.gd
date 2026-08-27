@@ -3,78 +3,97 @@ class_name PhysicsChecker
 
 @export var terrain : Terrain
 
-# if there is untransferred weight, block falls
-# if supported weight is greater than strangth, block is crushed
-
 func check() -> void:
-	var block_position_layers: Dictionary[int, Array] = {}
-	var min_layer_idx: int = terrain.blocks.keys()[0].y
-	var max_layer_idx: int = terrain.blocks.keys()[0].y
-	for block_position in terrain.blocks.keys():
-		if not block_position_layers.has(block_position.y):
-			block_position_layers[block_position.y] = []
-		block_position_layers[block_position.y].append(block_position)
-		if block_position.y > max_layer_idx:
-			max_layer_idx = block_position.y
-		elif block_position.y < min_layer_idx:
-			min_layer_idx = block_position.y
-		
-		var block = terrain.blocks[block_position]
-		block.supported_upward_weight = 0
-		block.supported_sideways_weight = 0
-		block.sideways_transferred_weight = 0
-		block.is_sitting = terrain.blocks.has(block_position + Vector3i(0, -1, 0)) or block.properties.immovable
-		block.marked_for_fall = false
-		block.marked_for_crush = false
+	for layer in terrain.layer_indicies:
+		for pos2d in terrain.get_block_positions_in_layer(layer):
+			var block: Block = terrain.get_block_by_layer(layer, pos2d)
+			block.state.reset()
 	
-	for layer_idx in range(max_layer_idx, min_layer_idx - 1, -1):
-		if not block_position_layers.has(layer_idx):
-			continue
-		
-		# sideways transfer loop
-		for position in block_position_layers[layer_idx]:
-			var block = terrain.blocks[position]
-			if block.properties.immovable:
-				continue
-			var positions_for_transfer: Array[Vector3i]
-			var potential_positions = [position + Vector3i(1, 0, 0), position + Vector3i(0, 0, 1), position + Vector3i(-1, 0, 0), position + Vector3i(0, 0, -1)]
-			for side_pos in potential_positions:
-				if terrain.blocks.has(side_pos) and terrain.blocks[side_pos].is_sitting:
-					positions_for_transfer.append(side_pos)
-			var side_count = positions_for_transfer.size()
-			if side_count == 0:
-				if not block.is_sitting:
-					block.marked_for_fall = true
-				continue
-			var max_weight_to_transfer: float = block.properties.weight + block.supported_upward_weight
-			if not block.is_sitting:
-				if max_weight_to_transfer > block.properties.sideways_transfer_limit * side_count:
-					block.marked_for_fall = true
-					block.sideways_transferred_weight = 0
+	for layer in terrain.layer_indicies:
+		for pos2d in terrain.get_block_positions_in_layer(layer):
+			var block: Block = terrain.get_block_by_layer(layer, pos2d)
+			
+			if block.properties is MagicBlockProperties:
+				pass
+			
+			elif block.properties is BuddyBlockProperties:
+				if not terrain.layer_exists(layer - 1) or not terrain.block_exists_by_layer(layer - 1, pos2d):
+					block.state.marked_to_fall = true
 				else:
-					block.sideways_transferred_weight = max_weight_to_transfer
-			else:
-				var weight_to_transfer_fraction = float(side_count) * block.properties.sideways_transfer_predisposition / (block.properties.sideways_transfer_predisposition * 4.0 + 1.0)
-				block.sideways_transferred_weight = clampf(max_weight_to_transfer * weight_to_transfer_fraction, 0, block.properties.sideways_transfer_limit * side_count)
-			for side_pos in positions_for_transfer:
-				terrain.blocks[side_pos].supported_sideways_weight += block.sideways_transferred_weight / side_count
-		
-		# downward transfer loop
-		for position in block_position_layers[layer_idx]:
-			var block = terrain.blocks[position]
-			if block.properties.immovable:
-				continue
-			if not block.is_sitting:
-				continue
-			var supported_weight = block.supported_upward_weight + block.supported_sideways_weight - block.sideways_transferred_weight
-			if supported_weight > block.properties.strength + 1e-6:
-				block.marked_for_crush = true
-			var weight_to_transfer = supported_weight + block.properties.weight
-			terrain.blocks[position + Vector3i(0, -1, 0)].supported_upward_weight += weight_to_transfer
-		
-		# visual update loop
-		for position in block_position_layers[layer_idx]:
-			terrain.blocks[position].update_text()
+					for potential_buddy_pos in [pos2d + Vector2i(1, 0), pos2d + Vector2i(-1, 0), pos2d + Vector2i(0, 1), pos2d + Vector2i(0, -1)]:
+						if terrain.block_exists_by_layer(layer, potential_buddy_pos):
+							block.state.buddy_count += 1
+					var effective_strength: float = block.properties.base_strength + block.properties.strength_per_buddy * block.state.buddy_count
+					if block.state.supported_weight > effective_strength:
+						block.state.marked_to_be_crushed = true
+					terrain.get_block_by_layer(layer - 1, pos2d).state.supported_weight += block.state.supported_weight + block.properties.weight
+			
+			elif block.properties is BeamBlockProperties:
+				if not terrain.layer_exists(layer - 1):
+					block.state.marked_to_fall = true
+				elif block.facing == Block.Facing.YPlus or block.facing == Block.Facing.YMinus:
+					if not terrain.block_exists_by_layer(layer - 1, pos2d):
+						block.state.marked_to_fall = true
+					elif block.state.supported_weight > block.properties.base_strength:
+						block.state.marked_to_be_crushed = true
+						terrain.get_block_by_layer(layer - 1, pos2d).state.supported_weight += block.state.supported_weight + block.properties.weight
+					else:
+						terrain.get_block_by_layer(layer - 1, pos2d).state.supported_weight += block.state.supported_weight + block.properties.weight
+				else:
+					if block.state.beam == null:
+						var beam: Beam = Beam.new()
+						block.state.beam = beam
+						if terrain.block_exists_by_layer(layer - 1, pos2d):
+							beam.support_positions.append(pos2d)
+						
+						var axis_step: Vector2i
+						if block.facing == Block.Facing.XPlus or block.facing == Block.Facing.XMinus:
+							axis_step = Vector2i(1, 0)
+							beam.acceptable_facings = [Block.Facing.XPlus, Block.Facing.XMinus]
+						elif block.facing == Block.Facing.ZPlus or block.facing == Block.Facing.ZMinus:
+							axis_step = Vector2i(0, 1)
+							beam.acceptable_facings = [Block.Facing.ZPlus, Block.Facing.ZMinus]
+						
+						var axis_pos: Vector2i = pos2d
+						while true:
+							axis_pos -= axis_step
+							if not terrain.block_exists_by_layer(layer, axis_pos):
+								break
+							var axis_block: Block = terrain.get_block_by_layer(layer, axis_pos)
+							if not axis_block.properties is BeamBlockProperties or not beam.acceptable_facings.has(axis_block.facing):
+								break
+							axis_block.state.beam = beam
+							if terrain.block_exists_by_layer(layer - 1, axis_pos):
+								beam.support_positions.append(axis_pos)
+						axis_pos = pos2d
+						while true:
+							axis_pos += axis_step
+							if not terrain.block_exists_by_layer(layer, axis_pos):
+								break
+							var axis_block: Block = terrain.get_block_by_layer(layer, axis_pos)
+							if not axis_block.properties is BeamBlockProperties or not beam.acceptable_facings.has(axis_block.facing):
+								break
+							axis_block.state.beam = beam
+							if terrain.block_exists_by_layer(layer - 1, axis_pos):
+								beam.support_positions.append(axis_pos)
+					if block.state.beam.support_positions.size() == 0:
+						block.state.marked_to_fall = true
+					elif block.state.beam.get_support_distance(pos2d) > block.properties.max_support_distance:
+						block.state.marked_to_fall = true
+					else:
+						if block.state.supported_weight > block.properties.base_strength:
+							block.state.marked_to_be_crushed = true
+						var support_count: float = block.state.beam.support_positions.size()
+						for support_pos in block.state.beam.support_positions:
+							terrain.get_block_by_layer(layer - 1, support_pos).state.supported_weight += (block.state.supported_weight + block.properties.weight) / support_count
+			
+			elif block.properties is PlatformBlockProperties:
+				pass
+	
+	for layer in terrain.layer_indicies:
+		for pos2d in terrain.get_block_positions_in_layer(layer):
+			var block: Block = terrain.get_block_by_layer(layer, pos2d)
+			block.update_text()
 
 func _ready() -> void:
 	pass

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BuddyBlockProperties" format=3 uid="uid://dbfwy5c82boqu"]
+
+[ext_resource type="Material" uid="uid://cp6dyuigknwqu" path="res://resources/cobblestone_block_material.tres" id="1_vos42"]
+[ext_resource type="Script" uid="uid://c6pahfxdmjydt" path="res://block_properties/buddy_block_properties.gd" id="2_vos42"]
+
+[resource]
+script = ExtResource("2_vos42")
+strength_per_buddy = 20.0
+name = "Cobblestone"
+materials = Dictionary[int, StandardMaterial3D]({
+0: ExtResource("1_vos42"),
+1: ExtResource("1_vos42"),
+2: ExtResource("1_vos42"),
+3: ExtResource("1_vos42"),
+4: ExtResource("1_vos42"),
+5: ExtResource("1_vos42")
+})
+weight = 10.0
+base_strength = 50.0
+metadata/_custom_type_script = "uid://c6pahfxdmjydt"

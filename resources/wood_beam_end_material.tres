@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bqswfamk4v8n3"]
+
+[ext_resource type="Texture2D" uid="uid://v76vregx02py" path="res://textures/centered.png" id="1_mpkot"]
+
+[resource]
+albedo_color = Color(0.56, 0.36922666, 0.1512, 1)
+albedo_texture = ExtResource("1_mpkot")
+texture_filter = 0

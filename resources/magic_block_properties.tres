@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MagicBlockProperties" format=3 uid="uid://x1x1en3qk01u"]
+
+[ext_resource type="Script" uid="uid://soxg6khp4shf" path="res://block_properties/magic_block_properties.gd" id="1_l75or"]
+[ext_resource type="Material" uid="uid://cdkkjfob4xju7" path="res://resources/magic_block_material.tres" id="1_uth3h"]
+
+[resource]
+script = ExtResource("1_l75or")
+name = "Magic"
+materials = Dictionary[int, StandardMaterial3D]({
+0: ExtResource("1_uth3h"),
+1: ExtResource("1_uth3h"),
+2: ExtResource("1_uth3h"),
+3: ExtResource("1_uth3h"),
+4: ExtResource("1_uth3h"),
+5: ExtResource("1_uth3h")
+})
+metadata/_custom_type_script = "uid://soxg6khp4shf"

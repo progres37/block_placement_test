@@ -52,13 +52,18 @@ var state: BlockState
 func update_text() -> void:
 	var text: String = ""
 	
-	text += "Supports\n" + str(snappedf(state.supported_weight, 0.01)) + " / "
+	text += str(snappedf(state.supported_weight, 0.01)) + " / "
 	if properties is BuddyBlockProperties:
-		text += str(snappedf(properties.base_strength + properties.strength_per_buddy * state.buddy_count, 0.01)) + "\n"
+		text += str(snappedf(state.effective_strength, 0.01)) + "\n"
 	elif properties is MagicBlockProperties:
 		text += "Inf\n"
 	else:
 		text += str(snappedf(properties.base_strength, 0.01)) + "\n"
+	if properties is BuddyBlockProperties:
+		if state.buddy_count > 0:
+			text += "Buddies: " + str(state.buddy_count) + "\n"
+		if state.beam_present:
+			text += "Has beam\n"
 	if state.marked_to_fall:
 		text += "Fall\n"
 	if state.marked_to_be_crushed:

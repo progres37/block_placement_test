@@ -5,7 +5,8 @@
 
 [resource]
 script = ExtResource("2_vos42")
-strength_per_buddy = 20.0
+strength_per_buddy = 25.0
+beam_presence_strength = 30.0
 name = "Cobblestone"
 materials = Dictionary[int, StandardMaterial3D]({
 0: ExtResource("1_vos42"),
@@ -16,5 +17,5 @@ materials = Dictionary[int, StandardMaterial3D]({
 5: ExtResource("1_vos42")
 })
 weight = 10.0
-base_strength = 50.0
+base_strength = 25.0
 metadata/_custom_type_script = "uid://c6pahfxdmjydt"

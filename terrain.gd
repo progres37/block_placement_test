@@ -46,7 +46,7 @@ func place_block(pos: Vector3i, facing: Block.Facing, properties: BlockPropertie
 	new_block.facing = facing
 	new_block.player_interacted_primary.connect(_on_block_player_interacted_primary.bind(pos))
 	new_block.player_interacted_secondary.connect(_on_block_player_interacted_secondary.bind(pos))
-	print("Placing at ", pos, ", facing: ", str(facing))
+	
 	physics_checker.check()
 
 func remove_block(pos: Vector3i) -> void:

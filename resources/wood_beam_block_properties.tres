@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("1_infx0")
 max_support_distance = 2
+buddy_block_reach = 2
 name = "Wooden Beam"
 materials = Dictionary[int, StandardMaterial3D]({
 0: ExtResource("2_rhmp4"),

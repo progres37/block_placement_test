@@ -102,7 +102,9 @@ func check() -> void:
 							if not terrain.block_exists_by_layer(layer, axis_pos):
 								break
 							var axis_block: Block = terrain.get_block_by_layer(layer, axis_pos)
-							if not axis_block.properties is BeamBlockProperties or not beam.acceptable_facings.has(axis_block.facing):
+							if not axis_block.properties is BeamBlockProperties or not properties == axis_block.properties:
+								break
+							if not beam.acceptable_facings.has(axis_block.facing):
 								break
 							axis_block.state.beam = beam
 							if terrain.block_exists_by_layer(layer - 1, axis_pos):
@@ -113,7 +115,9 @@ func check() -> void:
 							if not terrain.block_exists_by_layer(layer, axis_pos):
 								break
 							var axis_block: Block = terrain.get_block_by_layer(layer, axis_pos)
-							if not axis_block.properties is BeamBlockProperties or not beam.acceptable_facings.has(axis_block.facing):
+							if not axis_block.properties is BeamBlockProperties or not properties == axis_block.properties:
+								break
+							if not beam.acceptable_facings.has(axis_block.facing):
 								break
 							axis_block.state.beam = beam
 							if terrain.block_exists_by_layer(layer - 1, axis_pos):

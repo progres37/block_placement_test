@@ -8,12 +8,14 @@ signal selected_block_changed
 const COBBLESTONE_BLOCK_PROPERTIES = preload("uid://dbfwy5c82boqu")
 const MAGIC_BLOCK_PROPERTIES = preload("uid://x1x1en3qk01u")
 const WOOD_BEAM_BLOCK_PROPERTIES = preload("uid://dj3jvf4f0wdwx")
+const ROCK_BEAM_BLOCK_PROPERTIES = preload("uid://bpq2ocds57c2n")
 
 
 
 var block_inventory: Array[BlockProperties] = [
 	COBBLESTONE_BLOCK_PROPERTIES,
 	WOOD_BEAM_BLOCK_PROPERTIES,
+	ROCK_BEAM_BLOCK_PROPERTIES,
 	MAGIC_BLOCK_PROPERTIES
 ]
 var selected_block_idx: int = 0:

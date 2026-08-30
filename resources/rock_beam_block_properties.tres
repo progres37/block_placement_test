@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BeamBlockProperties" format=3 uid="uid://bpq2ocds57c2n"]
+
+[ext_resource type="Material" uid="uid://c4d65h4d3okmp" path="res://resources/stone_beam_end_material.tres" id="1_naipq"]
+[ext_resource type="Script" uid="uid://c2uf1bdtdurc0" path="res://block_properties/beam_block_properties.gd" id="1_p36l7"]
+[ext_resource type="Material" uid="uid://bjegj50usd0" path="res://resources/stone_beam_side_material.tres" id="2_117vc"]
+
+[resource]
+script = ExtResource("1_p36l7")
+max_support_distance = 1
+buddy_block_reach = 3
+name = "Rock Beam"
+materials = Dictionary[int, StandardMaterial3D]({
+0: ExtResource("1_naipq"),
+1: ExtResource("1_naipq"),
+2: ExtResource("2_117vc"),
+3: ExtResource("2_117vc"),
+4: ExtResource("2_117vc"),
+5: ExtResource("2_117vc")
+})
+weight = 12.0
+base_strength = 60.0
+metadata/_custom_type_script = "uid://c2uf1bdtdurc0"

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bjegj50usd0"]
+
+[ext_resource type="Texture2D" uid="uid://ptu537owqukc" path="res://textures/axial.png" id="1_b5bmo"]
+
+[resource]
+albedo_color = Color(0.69, 0.64492, 0.5934, 1)
+albedo_texture = ExtResource("1_b5bmo")
+texture_filter = 0

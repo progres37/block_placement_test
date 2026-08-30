@@ -1,0 +1,14 @@
+res://resources/cobblestone_block_material.tres::f19ceadcbcb0ca045be589342eee348a::1787685606::res://.godot/exported/133200997/export-5c3023e2fe499d9a0d640b0dd6257917-cobblestone_block_material.res
+res://resources/cobblestone_block_properties.tres::d34f908219f925bfa572fd2eaf1b826e::1787931285::res://.godot/exported/133200997/export-d9639ab2b089b8de5f8d4a67004abcf8-cobblestone_block_properties.res
+res://resources/magic_block_material.tres::1cbe99b6421bbf41e5c377f01fecfab5::1787685606::res://.godot/exported/133200997/export-9cd986c420b4cbe96aa6b247fe50539c-magic_block_material.res
+res://resources/magic_block_properties.tres::0cbfb150b5d7b428fa1514dad5f6e508::1787686167::res://.godot/exported/133200997/export-a097d3466839f007ccb15f25fbac9624-magic_block_properties.res
+res://resources/wood_beam_block_properties.tres::a70d59d283d5177bebda7acf5e11938c::1787856100::res://.godot/exported/133200997/export-ba5e4f195fa9a684d1adee190c71e441-wood_beam_block_properties.res
+res://resources/wood_beam_end_material.tres::0c1421386551792f4c3b07a612be4ba2::1787777369::res://.godot/exported/133200997/export-9d5542db560f3a3e9536e872dfaa838e-wood_beam_end_material.res
+res://resources/wood_beam_side_material.tres::1fb34e839071dbc83b6fe5ec6aa592f3::1787777644::res://.godot/exported/133200997/export-413ff55fb4a1e040cf98097dc7af1c5a-wood_beam_side_material.res
+res://block.tscn::56c14322e787ffaea4b438a935753f20::1787931285::res://.godot/exported/133200997/export-065de61523f0b76d41794e3a10ac1cb7-block.scn
+res://hud.tscn::8fc800ea91ea2ba801feef92fcb5f714::1787502673::res://.godot/exported/133200997/export-f4cf891e5f7a93b93d9b27cfb8401ccb-hud.scn
+res://physics_checker.tscn::31c5ac31b8eff0b9189dfa5182070c63::1787856692::res://.godot/exported/133200997/export-30686fd266592f953ed939c684063178-physics_checker.scn
+res://player.tscn::7e73b62afbef0ffd0dc0c4b7af771a2c::1787777644::res://.godot/exported/133200997/export-36a25e342948d0ceacc500772b5412b3-player.scn
+res://player_character.tscn::9dd810a45d726aa23813e8a2d0b095b6::1787502673::res://.godot/exported/133200997/export-563b40137a906541d6c03fbc25671f96-player_character.scn
+res://terrain.tscn::ba329e5881ecfa22f2f58f13fc981bb4::1787685444::res://.godot/exported/133200997/export-fd026d94bcf33cc8122cfe005006dd03-terrain.scn
+res://world.tscn::6bad8e6d3cfe0eb238ad632a7d8a2e96::1787502673::res://.godot/exported/133200997/export-76e0adcbc83681695885bae615f516ae-world.scn
